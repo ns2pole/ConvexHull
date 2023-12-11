@@ -70,10 +70,6 @@ public class Linear2DEquation {
                 this.c.getProductRatio(r));
     }
 
-//    static boolean isSimplified(Pair<Linear2DEquation> pair) {
-//
-//    }
-
     Linear2DEquation substructBy(Linear2DEquation li2D) {
         return new Linear2DEquation(
                 this.coff1.minus(li2D.coff1),
