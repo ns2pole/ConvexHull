@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="455af788-b430-4074-b27d-cb23f9b7ebce" name="変更" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/LinearEquation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/LinearEquationTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../SquareRootMethod/src/main/java/org/example/Decimal.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../SquareRootMethod/src/main/java/org/example/SquareRoot.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../SquareRootMethod/src/test/java/org/example/DecimalTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../SquareRootMethod/src/test/java/org/example/SquareRootTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Linear2DEquation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Linear2DEquation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/LinearEquation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/LinearEquation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/LinearEquationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/LinearEquationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../primitiveElement/src/main/java/com/demo/ModInteger.java" beforeDir="false" afterPath="$PROJECT_DIR$/../primitiveElement/src/main/java/com/demo/ModInteger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../primitiveElement/src/test/java/com/demo/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../primitiveElement/src/test/java/com/demo/AppTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../primitiveElement/構造図.key" beforeDir="false" afterPath="$PROJECT_DIR$/../primitiveElement/構造図.key" afterDir="false" />
@@ -83,7 +82,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LinearEquationTest.cut" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LinearEquationTest.getSolution" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ConvexHull" />
       <extension name="coverage">
         <pattern>
@@ -93,13 +92,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
       <option name="MAIN_CLASS_NAME" value="org.example.LinearEquationTest" />
-      <option name="METHOD_NAME" value="cut" />
+      <option name="METHOD_NAME" value="getSolution" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LinearEquationTest.getSweptedNum" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LinearEquationTest.sortAndToUnitAndSwept" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ConvexHull" />
       <extension name="coverage">
         <pattern>
@@ -109,23 +108,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
       <option name="MAIN_CLASS_NAME" value="org.example.LinearEquationTest" />
-      <option name="METHOD_NAME" value="getSweptedNum" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LinearEquationTest.getTargetColumnNum" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ConvexHull" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.LinearEquationTest" />
-      <option name="METHOD_NAME" value="getTargetColumnNum" />
+      <option name="METHOD_NAME" value="sortAndToUnitAndSwept" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -147,13 +130,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LinearEquationTest.toUnitAndSwept" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ConvexHull" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.LinearEquationTest" />
+      <option name="METHOD_NAME" value="toUnitAndSwept" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.LinearEquationTest" />
+        <item itemvalue="JUnit.LinearEquationTest.getSolution" />
+        <item itemvalue="JUnit.LinearEquationTest.sortAndToUnitAndSwept" />
+        <item itemvalue="JUnit.LinearEquationTest.toUnitAndSwept" />
         <item itemvalue="JUnit.LinearEquationTest.sweptFor" />
-        <item itemvalue="JUnit.LinearEquationTest.getSweptedNum" />
-        <item itemvalue="JUnit.LinearEquationTest.getTargetColumnNum" />
-        <item itemvalue="JUnit.LinearEquationTest.cut" />
       </list>
     </recent_temporary>
   </component>
@@ -184,8 +183,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/org/example/LinearEquationTest.java</url>
-          <line>156</line>
-          <option name="timeStamp" value="1" />
+          <line>275</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/LinearEquation.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

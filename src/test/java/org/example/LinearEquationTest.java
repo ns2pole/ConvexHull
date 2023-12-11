@@ -69,6 +69,25 @@ class LinearEquationTest {
         return eq3;
     }
 
+    // 0/1 x_0 + 21/80 x_1 + 1/3 x_2 = -3/8,
+    private LinearEquation getSweptedTest3DEq2_By_Eq1() {
+        ArrayList<Ratio> coefficientsEq2 = new ArrayList<>(
+                List.of(new Ratio(1, 0), new Ratio(80, 21), new Ratio(3, 1))
+        );
+        Ratio cEq2 = new Ratio(8, -3);
+        return new LinearEquation(coefficientsEq2, cEq2);
+    }
+
+    // 0/1 x_0 + 15/56 x_1 + 22/63 x_2 = -8/21,
+    private LinearEquation getSweptedTest3DEq3_By_Eq1() {
+        ArrayList<Ratio> coefficientsEq3 = new ArrayList<>(
+                List.of(new Ratio(1, 0), new Ratio(56, 15), new Ratio(63, 22))
+        );
+        Ratio cEq3 = new Ratio(21, -8);
+        return new LinearEquation(coefficientsEq3, cEq3);
+    }
+
+    // 1/1 x_0 + 3/4 x_1 + 2/3 x_2 = 3/2,
     private LinearEquation getTest3DFirstIndexUnitEq_1() {
         ArrayList<Ratio> coefficientsEq1 = new ArrayList<>(
                 List.of(new Ratio(1, 1), new Ratio(4, 3), new Ratio(3, 2))
@@ -101,9 +120,10 @@ class LinearEquationTest {
 
 
 
-
+    // 2/1 x_0 + 3/2 x_1 + 4/3 x_2 = 3/1,
+    // 5/4 x_0 + 6/5 x_1 + 7/6 x_2 = 3/2,
+    // 8/7 x_0 + 9/8 x_1 + 10/9 x_2 = 4/3
     private ArrayList<LinearEquation> getTest3DEqs_1() {
-        // 既存のeq1
         LinearEquation eq1 = getTest3DEq_1();
         LinearEquation eq2 = getTest3DEq_2();
         LinearEquation eq3 = getTest3DEq_3();
@@ -112,13 +132,103 @@ class LinearEquationTest {
         return eqs;
     }
 
-    // 1/1 x_0 + 3/2 x_1 + 4/3 x_2 = 3/1,
+    // 1/1 x_0 + 3/4 x_1 + 2/3 x_2 = 3/2,
     // 0/1 x_0 + 6/5 x_1 + 7/6 x_2 = 3/2,
     // 0/1 x_0 + 9/8 x_1 + 10/9 x_2 = 4/3
     private ArrayList<LinearEquation> getTest3DEqs_2() {
         LinearEquation eq1 = getTest3DFirstIndexUnitEq_1();
         LinearEquation eq2 = getTestIndexZero3DEq_2();
         LinearEquation eq3 = getTestIndexZero3DEq_3();
+        ArrayList<LinearEquation> eqs = new ArrayList<>(List.of(eq1, eq2, eq3));
+        return eqs;
+    }
+
+    //1/1 x_0 + 0/1 x_1 + -1/16 x_2 = 9/16
+    private LinearEquation getSweptedTest3DEq1_By_Eq2() {
+        ArrayList<Ratio> coefficientsEq1 = new ArrayList<>(
+                List.of(new Ratio(1, 1), new Ratio(1, 0), new Ratio(16, -1))
+        );
+        Ratio cEq1 = new Ratio(16, 9);
+        LinearEquation eq1 = new LinearEquation(coefficientsEq1, cEq1);
+        return eq1;
+    }
+
+    //0/1 x_0 + 1/1 x_1 + 35/36 x_2 = 5/4
+    private LinearEquation getTest3DFirstIndexUnitEq_2() {
+        ArrayList<Ratio> coefficientsEq2 = new ArrayList<>(
+                List.of(new Ratio(1, 0), new Ratio(1, 1), new Ratio(36, 35))
+        );
+        Ratio cEq2 = new Ratio(4, 5);
+        LinearEquation eq2 = new LinearEquation(coefficientsEq2, cEq2);
+        return eq2;
+    }
+
+    //0/1 x_0 + 0/1 x_1 + 5/288 x_2 = -7/96
+    private LinearEquation getSweptedTest3DEq3_By_Eq2() {
+        ArrayList<Ratio> coefficientsEq3 = new ArrayList<>(
+                List.of(new Ratio(1, 0), new Ratio(1, 0), new Ratio(288, 5))
+        );
+        Ratio cEq3 = new Ratio(96, -7);
+        LinearEquation eq3 = new LinearEquation(coefficientsEq3, cEq3);
+        return eq3;
+    }
+
+
+
+    // 2/1 x_0 + 3/2 x_1 + 4/3 x_2 = 3/1,
+    // 0/1 x_0 + 21/80 x_1 + 1/3 x_2 = -3/8,
+    // 0/1 x_0 + 15/56 x_1 + 22/63 x_2 = -8/21
+    private ArrayList<LinearEquation> getTest3DEqs_3() {
+        LinearEquation eq1 = getTest3DEq_1();
+        LinearEquation eq2 = getSweptedTest3DEq2_By_Eq1();
+        LinearEquation eq3 = getSweptedTest3DEq3_By_Eq1();
+        ArrayList<LinearEquation> eqs = new ArrayList<>(List.of(eq1, eq2, eq3));
+        return eqs;
+    }
+
+    // 1/1 x_0 + 3/4 x_1 + 2/3 x_2 = 3/2,
+    // 0/1 x_0 + 21/80 x_1 + 1/3 x_2 = -3/8,
+    // 0/1 x_0 + 15/56 x_1 + 22/63 x_2 = -8/21
+    private ArrayList<LinearEquation> getTest3DEqs_4() {
+        LinearEquation eq1 = getTest3DFirstIndexUnitEq_1();
+        LinearEquation eq2 = getSweptedTest3DEq2_By_Eq1();
+        LinearEquation eq3 = getSweptedTest3DEq3_By_Eq1();
+        ArrayList<LinearEquation> eqs = new ArrayList<>(List.of(eq1, eq2, eq3));
+        return eqs;
+    }
+
+
+    //1/1 x_0 + 0/1 x_1 + -1/16 x_2 = 9/16
+    //0/1 x_0 + 1/1 x_1 + 35/36 x_2 = 5/4
+    //0/1 x_0 + 0/1 x_1 + 5/288 x_2 = -7/96
+    private ArrayList<LinearEquation> getTest3DEqs_5() {
+        LinearEquation eq1 = getSweptedTest3DEq1_By_Eq2();
+        LinearEquation eq2 = getTest3DFirstIndexUnitEq_2();
+        LinearEquation eq3 = getSweptedTest3DEq3_By_Eq2();
+        ArrayList<LinearEquation> eqs = new ArrayList<>(List.of(eq1, eq2, eq3));
+        return eqs;
+    }
+
+    //1/1 x_0 + 0/1 x_1 + 0/1 x_2 = 3/10
+    //0/1 x_0 + 1/1 x_1 + 0/1 x_2 = 16/3
+    //0/1 x_0 + 0/1 x_1 + 1/1 x_2 = -21/5
+
+    private ArrayList<LinearEquation> getTest3DEqs_6() {
+        ArrayList<Ratio> coefficientsEq1 = new ArrayList<>(
+                List.of(new Ratio(1, 1), new Ratio(1, 0), new Ratio(1, 0))
+        );
+        Ratio cEq1 = new Ratio(10, 3);
+        LinearEquation eq1 = new LinearEquation(coefficientsEq1, cEq1);
+        ArrayList<Ratio> coefficientsEq2 = new ArrayList<>(
+                List.of(new Ratio(1, 0), new Ratio(1, 1), new Ratio(1, 0))
+        );
+        Ratio cEq2 = new Ratio(3, 16);
+        LinearEquation eq2 = new LinearEquation(coefficientsEq2, cEq2);
+        ArrayList<Ratio> coefficientsEq3 = new ArrayList<>(
+                List.of(new Ratio(1, 0), new Ratio(1, 0), new Ratio(1, 1))
+        );
+        Ratio cEq3 = new Ratio(5, -21);
+        LinearEquation eq3 = new LinearEquation(coefficientsEq3, cEq3);
         ArrayList<LinearEquation> eqs = new ArrayList<>(List.of(eq1, eq2, eq3));
         return eqs;
     }
@@ -132,41 +242,78 @@ class LinearEquationTest {
         System.out.println(eqs);
         return eqs;
     }
-    @Test
-    void toUnitAndSwept() {
-        ArrayList<LinearEquation> eqs = getTest3DEqs_1();
-        ArrayList<LinearEquation> actual = LinearEquation.toUnitAndSwept(eqs);
 
-        ArrayList<Ratio> coefficientsEq1 = new ArrayList<>(
-                List.of(new Ratio(1, 2), new Ratio(2, 3), new Ratio(3, 4))
-        );
-        Ratio cEq1 = new Ratio(1, 3);
-        LinearEquation eq1 = new LinearEquation(coefficientsEq1, cEq1);
-
-        // 新しい方程式eq2
-        ArrayList<Ratio> coefficientsEq2 = new ArrayList<>(
-                List.of(new Ratio(1, 0), new Ratio(80, 21), new Ratio(3, 1))
-        );
-        Ratio cEq2 = new Ratio(8, -3);
-        LinearEquation eq2 = new LinearEquation(coefficientsEq2, cEq2);
-
-        // 新しい方程式eq3
-        ArrayList<Ratio> coefficientsEq3 = new ArrayList<>(
-                List.of(new Ratio(1, 0), new Ratio(56, 15), new Ratio(63, 22))
-        );
-        Ratio cEq3 = new Ratio(21, -8);
-
-    }
+    // 1/1 x_0 + 3/4 x_1 + 2/3 x_2 = 3/2,
+    // 0/1 x_0 + 6/5 x_1 + 7/6 x_2 = 3/2,
+    // 0/1 x_0 + 9/8 x_1 + 10/9 x_2 = 4/3
+    //->
+    //1/1 x_0 + 0/1 x_1 + 0/1 x_2 = 3/10
+    //0/1 x_0 + 1/1 x_1 + 0/1 x_2 = 16/3
+    //0/1 x_0 + 0/1 x_1 + 1/1 x_2 = -21/5
 
     @Test
     void getSolution() {
-        ArrayList<LinearEquation> eqs = getTest3DEqs_1();
-        int targetRow = LinearEquation.getTargetRowNum(eqs);
-        ArrayList<LinearEquation> unitEqsForTargetRow = LinearEquation.toUnitForTargetRow(eqs);
-        ArrayList<LinearEquation> newEqs = unitEqsForTargetRow.get(targetRow).sweptFor(unitEqsForTargetRow);
+        ArrayList<LinearEquation> eq = getTest3DEqs_2();
+        ArrayList<Ratio> actual = LinearEquation.getSolution(eq);
+        ArrayList<Ratio> expected = new ArrayList<>(List.of(
+                new Ratio(10, 3),
+                new Ratio(3, 16),
+                new Ratio(5, -21)
+        ));
+        assertEquals(expected, actual);
+    }
+    @Test
+    void sortAndToUnitAndSwept() {
+        // 2/1 x_0 + 3/2 x_1 + 4/3 x_2 = 3/1,
+        // 5/4 x_0 + 6/5 x_1 + 7/6 x_2 = 3/2,
+        // 8/7 x_0 + 9/8 x_1 + 10/9 x_2 = 4/3
+        //->
+        // 1/1 x_0 + 3/4 x_1 + 2/3 x_2 = 3/2,
+        // 0/1 x_0 + 21/80 x_1 + 1/3 x_2 = -3/8,
+        // 0/1 x_0 + 15/56 x_1 + 22/63 x_2 = -8/21
+//        ArrayList<LinearEquation> eqs = getTest3DEqs_1();
+//        ArrayList<LinearEquation> actual_eq1 = LinearEquation.sortAndToUnitAndSwept(eqs);
+//        ArrayList<LinearEquation> expected_eq1 = getTest3DEqs_4();
+//        assertEquals(expected_eq1, actual_eq1);
+//
+//
+//        int actual_num1 = LinearEquation.getSweptedNum(actual_eq1);
+//        int expected_num1 = 1;
+//        assertEquals(expected_num1, actual_num1);
+//
+//        // 1/1 x_0 + 3/4 x_1 + 2/3 x_2 = 3/2,
+//        // 0/1 x_0 + 6/5 x_1 + 7/6 x_2 = 3/2,
+//        // 0/1 x_0 + 9/8 x_1 + 10/9 x_2 = 4/3
+//        //->
+//        //1/1 x_0 + 0/1 x_1 + -1/16 x_2 = 9/16
+//        //0/1 x_0 + 1/1 x_1 + 35/36 x_2 = 5/4
+//        //0/1 x_0 + 0/1 x_1 + 5/288 x_2 = -7/96
+//
+//        ArrayList<LinearEquation> eqs2 = getTest3DEqs_2();
+//        ArrayList<LinearEquation> actual_eq2 = LinearEquation.sortAndToUnitAndSwept(eqs2);
+//        ArrayList<LinearEquation> expected_eq2 = getTest3DEqs_5();
+//        assertEquals(expected_eq2, actual_eq2);
+//
+//        int actual_num1_2 = LinearEquation.getSweptedNum(actual_eq2);
+//        int expected_num1_2 = 2;
+//        assertEquals(expected_num1_2, actual_num1_2);
 
+        //1/1 x_0 + 0/1 x_1 + -1/16 x_2 = 9/16
+        //0/1 x_0 + 1/1 x_1 + 35/36 x_2 = 5/4
+        //0/1 x_0 + 0/1 x_1 + 5/288 x_2 = -7/96
+        //->
+        //1/1 x_0 + 0/1 x_1 + 0/1 x_2 = 3/10
+        //0/1 x_0 + 1/1 x_1 + 0/1 x_2 = 16/3
+        //0/1 x_0 + 0/1 x_1 + 1/1 x_2 = -21/5
 
-        assertEquals(1,1);
+        ArrayList<LinearEquation> eqs3 = getTest3DEqs_5();
+        ArrayList<LinearEquation> actual_eq3 = LinearEquation.sortAndToUnitAndSwept(eqs3);
+        ArrayList<LinearEquation> expected_eq3 = getTest3DEqs_6();
+        assertEquals(expected_eq3, actual_eq3);
+
+        int actual_num1_3 = LinearEquation.getSweptedNum(actual_eq3);
+        int expected_num1_3 = 3;
+        assertEquals(expected_num1_3, actual_num1_3);
     }
 
     @Test
@@ -216,34 +363,18 @@ class LinearEquationTest {
 
     @Test
     void sweptFor() {
-        ArrayList<LinearEquation> eqs = getTest3DEqs_1();
-        LinearEquation eq = eqs.get(0);
-        ArrayList<LinearEquation> actual = eq.sweptFor(eqs);
-        ArrayList<Ratio> coefficientsEq1 = new ArrayList<>(
-                List.of(new Ratio(1, 2), new Ratio(2, 3), new Ratio(3, 4))
-        );
-        Ratio cEq1 = new Ratio(1, 3);
-        LinearEquation eq1 = new LinearEquation(coefficientsEq1, cEq1);
 
-        // 新しい方程式eq2
-        ArrayList<Ratio> coefficientsEq2 = new ArrayList<>(
-                List.of(new Ratio(1, 0), new Ratio(80, 21), new Ratio(3, 1))
-        );
-        Ratio cEq2 = new Ratio(8, -3);
-        LinearEquation eq2 = new LinearEquation(coefficientsEq2, cEq2);
-
-        // 新しい方程式eq3
-        ArrayList<Ratio> coefficientsEq3 = new ArrayList<>(
-                List.of(new Ratio(1, 0), new Ratio(56, 15), new Ratio(63, 22))
-        );
-        Ratio cEq3 = new Ratio(21, -8);
-
+        // 2/1 x_0 + 3/2 x_1 + 4/3 x_2 = 3/1,
+        // 5/4 x_0 + 6/5 x_1 + 7/6 x_2 = 3/2,
+        // 8/7 x_0 + 9/8 x_1 + 10/9 x_2 = 4/3
+        //->
         // 2/1 x_0 + 3/2 x_1 + 4/3 x_2 = 3/1,
         // 0/1 x_0 + 21/80 x_1 + 1/3 x_2 = -3/8,
         // 0/1 x_0 + 15/56 x_1 + 22/63 x_2 = -8/21]
-
-        LinearEquation eq3 = new LinearEquation(coefficientsEq3, cEq3);
-        ArrayList<LinearEquation> expected = new ArrayList<>(List.of(eq1, eq2, eq3));
+        ArrayList<LinearEquation> eqs = getTest3DEqs_1();
+        LinearEquation eq = eqs.get(0);
+        ArrayList<LinearEquation> actual = eq.sweptFor(eqs);
+        ArrayList<LinearEquation> expected = getTest3DEqs_3();
         System.out.println(actual);
 
         assertEquals(expected, actual);

@@ -24,8 +24,17 @@ public class LinearEquation {
 
     //(0, 3, 2) -> (0, 1, 2/3) -> (1, 0, 1/2)
     //(4, 0, 2) -> (1, 0, 1/2) -> (0, 1, 2/3)
-    static Solution getSolution(LinearEquation le2D_1, LinearEquation le2D_2) {
-            return new Solution(null, null, "解はありません");
+    static ArrayList<Ratio> getSolution(ArrayList<LinearEquation> eqs) {
+        //TODO copyの仕方
+        ArrayList<LinearEquation> sweptingEqs = eqs;
+        for(int i = 0; i < eqs.size(); i++) {
+            int sweptedNum = getSweptedNum(sweptingEqs);
+            if(sweptedNum == eqs.size()) {
+                break;
+            }
+            sweptingEqs = sortAndToUnitAndSwept(sweptingEqs);
+        }
+        return getAllConst(sweptingEqs);
     }
 
     LinearEquation timesBy(Ratio r) {
@@ -64,9 +73,10 @@ public class LinearEquation {
     // 0/1 x_0 + 21/80 x_1 + 1/3 x_2 = -3/8,
     // 0/1 x_0 + 15/56 x_1 + 22/63 x_2 = -8/21]
 
-    public static ArrayList<LinearEquation> toUnitAndSwept(ArrayList<LinearEquation> eqs) {
-        ArrayList<LinearEquation> unitedEqs = toUnitForTargetRow(eqs);
-        return getTargetRowEq(unitedEqs).sweptFor(eqs);
+    public static ArrayList<LinearEquation> sortAndToUnitAndSwept(ArrayList<LinearEquation> eqs) {
+        ArrayList<LinearEquation> sortedEqs = getSorted(eqs);
+        ArrayList<LinearEquation> unitedEqs = toUnitForTargetRow(sortedEqs);
+        return getTargetRowEq(unitedEqs).sweptFor(unitedEqs);
     }
 
     public static LinearEquation getTargetRowEq(ArrayList<LinearEquation> eqs) {
@@ -114,7 +124,7 @@ public class LinearEquation {
             throw new IllegalArgumentException("指定範囲が誤っています。");
         }
 
-        for (int i = to; i >= from; i--) {
+        for (int i = from; i < to; i++) {
             result.remove(i); // 指定範囲の行（方程式）を削除
         }
 
@@ -132,7 +142,7 @@ public class LinearEquation {
             if (to >= cofficients.size()) {
                 throw new IllegalArgumentException("指定範囲が誤っています。");
             }
-            for (int i = to; i >= from; i--) {
+            for (int i = from; i < to; i++) {
                 cofficients.remove(i); // 指定範囲の列（係数）を削除
             }
             LinearEquation newEq = new LinearEquation(cofficients, c);
@@ -183,7 +193,7 @@ public class LinearEquation {
         throw new IllegalArgumentException("全ての係数が0です。");
     }
 
-    public ArrayList<LinearEquation> getSortedEqs(ArrayList<LinearEquation> equations) {
+    public static ArrayList<LinearEquation> getSorted(ArrayList<LinearEquation> equations) {
         Collections.sort(equations, (eq1, eq2) -> {
             int index1 = eq1.getFirstNonZeroIndex();
             int index2 = eq2.getFirstNonZeroIndex();
@@ -193,7 +203,7 @@ public class LinearEquation {
     }
 
     public LinearEquation sweptFor(LinearEquation eq) {
-        int index = eq.getFirstNonZeroIndex();
+        int index = this.getFirstNonZeroIndex();
         Ratio r1 = this.cofficients.get(index);
         Ratio r2 = eq.cofficients.get(index);
         return eq.minus(this.timesBy(r2.divide(r1)));
@@ -203,12 +213,21 @@ public class LinearEquation {
         ArrayList<LinearEquation> sweptedEqs = new ArrayList<>();
         for (LinearEquation eq : equations) {
             if(!eq.equals(this)) {
-                sweptedEqs.add(this.sweptFor(eq));
+                LinearEquation tmp = this.sweptFor(eq);
+                sweptedEqs.add(tmp);
             } else {
                 sweptedEqs.add(this);
             }
         }
         return sweptedEqs;
+    }
+
+    public static ArrayList<Ratio> getAllConst(ArrayList<LinearEquation> eqs) {
+        ArrayList<Ratio> allConsts = new ArrayList<>();
+        for(LinearEquation eq : eqs) {
+            allConsts.add(eq.c);
+        }
+        return allConsts;
     }
 
 
