@@ -9,7 +9,7 @@ public class Ratio {
 	private int denominator;
 	private int numerator;
 	Ratio(int den,int nume){
-		if(den < 0 && nume < 0) {
+		if(den < 0) {
 			this.denominator = -1 * den;
 			this.numerator = -1 * nume;
 		} else {

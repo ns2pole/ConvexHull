@@ -124,7 +124,13 @@ public class LinearEquation {
             throw new IllegalArgumentException("指定範囲が誤っています。");
         }
 
-        for (int i = from; i < to; i++) {
+        for (int i = to - 1; i >= from; i--) {
+            System.out.println(result);
+            System.out.println("from");
+            System.out.println(from);
+            System.out.println("to");
+            System.out.println(to);
+            System.out.println(result);
             result.remove(i); // 指定範囲の行（方程式）を削除
         }
 
@@ -142,7 +148,7 @@ public class LinearEquation {
             if (to >= cofficients.size()) {
                 throw new IllegalArgumentException("指定範囲が誤っています。");
             }
-            for (int i = from; i < to; i++) {
+            for (int i = to - 1; i >= from; i--) {
                 cofficients.remove(i); // 指定範囲の列（係数）を削除
             }
             LinearEquation newEq = new LinearEquation(cofficients, c);

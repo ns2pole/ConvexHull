@@ -118,7 +118,60 @@ class LinearEquationTest {
     }
 
 
+    // 5/1 x_0 + 9/1 x_1 + 2/1 x_2 + 1/1 x_3 = 6/1,
+    private LinearEquation getTest4DEq_1() {
+        ArrayList<Ratio> coefficientsEq1 = new ArrayList<>(
+                List.of(new Ratio(1, 5), new Ratio(1, 9), new Ratio(1, 2), new Ratio(1, 1))
+        );
+        Ratio cEq1 = new Ratio(1, 6);
+        LinearEquation eq1 = new LinearEquation(coefficientsEq1, cEq1);
+        return eq1;
+    }
 
+    // 1/1 x_0 + 3/1 x_1 + 1/1 x_2 + 2/1 x_3 = 1/1,
+    private LinearEquation getTest4DEq_2() {
+        ArrayList<Ratio> coefficientsEq2 = new ArrayList<>(
+                List.of(new Ratio(1, 1), new Ratio(1, 3), new Ratio(1, 1), new Ratio(1, 2))
+        );
+        Ratio cEq2 = new Ratio(1, 1);
+        LinearEquation eq2 = new LinearEquation(coefficientsEq2, cEq2);
+        return eq2;
+    }
+
+    // 0/1 x_0 + 0/1 x_1 + 1/1 x_2 + 1/1 x_3 = 2/1
+    private LinearEquation getTest4DEq_3() {
+        ArrayList<Ratio> coefficientsEq3 = new ArrayList<>(
+                List.of(new Ratio(1, 0), new Ratio(1, 0), new Ratio(1, 1), new Ratio(1, 1))
+        );
+        Ratio cEq3 = new Ratio(1, 2);
+        LinearEquation eq3 = new LinearEquation(coefficientsEq3, cEq3);
+        return eq3;
+    }
+
+    // 1/1 x_0 + 3/1 x_1 + 0/1 x_2 + 0/1 x_3 = 4/1
+    private LinearEquation getTest4DEq_4() {
+        ArrayList<Ratio> coefficientsEq4 = new ArrayList<>(
+                List.of(new Ratio(1, 1), new Ratio(1, 3), new Ratio(1, 0), new Ratio(1, 0))
+        );
+        Ratio cEq4 = new Ratio(1, 4);
+        LinearEquation eq4 = new LinearEquation(coefficientsEq4, cEq4);
+        return eq4;
+    }
+
+
+    // 5/1 x_0 + 9/1 x_1 + 2/1 x_2 + 1/1 x_3 = 6/1,
+    // 1/1 x_0 + 3/1 x_1 + 1/1 x_2 + 2/1 x_3 = 1/1,
+    // 0/1 x_0 + 0/1 x_1 + 1/1 x_2 + 1/1 x_3 = 2/1,
+    // 1/1 x_0 + 3/1 x_1 + 0/1 x_2 + 0/1 x_3 = 4/1,
+    private ArrayList<LinearEquation> getTest4DEqs_1() {
+        LinearEquation eq1 = getTest4DEq_1();
+        LinearEquation eq2 = getTest4DEq_2();
+        LinearEquation eq3 = getTest4DEq_3();
+        LinearEquation eq4 = getTest4DEq_4();
+        ArrayList<LinearEquation> eqs = new ArrayList<>(List.of(eq1, eq2, eq3, eq4));
+        System.out.println(eqs);
+        return eqs;
+    }
 
     // 2/1 x_0 + 3/2 x_1 + 4/3 x_2 = 3/1,
     // 5/4 x_0 + 6/5 x_1 + 7/6 x_2 = 3/2,
@@ -261,6 +314,26 @@ class LinearEquationTest {
                 new Ratio(5, -21)
         ));
         assertEquals(expected, actual);
+
+        ArrayList<LinearEquation> eq2 = getTest3DEqs_1();
+        ArrayList<Ratio> actual2 = LinearEquation.getSolution(eq2);
+        ArrayList<Ratio> expected2 = new ArrayList<>(List.of(
+                new Ratio(8, 21),
+                new Ratio(3, -5),
+                new Ratio(16, 3)
+        ));
+        assertEquals(expected2, actual2);
+
+        ArrayList<LinearEquation> eq3 = getTest4DEqs_1();
+
+        ArrayList<Ratio> actual3 = LinearEquation.getSolution(eq3);
+        ArrayList<Ratio> expected3 = new ArrayList<>(List.of(
+                new Ratio(2, -15),
+                new Ratio(6, 23),
+                new Ratio(1, 7),
+                new Ratio(1, -5)
+        ));
+        assertEquals(expected3, actual3);
     }
     @Test
     void sortAndToUnitAndSwept() {
@@ -318,10 +391,30 @@ class LinearEquationTest {
 
     @Test
     void cut() {
+        // 2/1 x_0 + 3/2 x_1 + 4/3 x_2 = 3/1,
+        // 5/4 x_0 + 6/5 x_1 + 7/6 x_2 = 3/2,
+        // 8/7 x_0 + 9/8 x_1 + 10/9 x_2 = 4/3
+        // ->
+        // 6/5 x_1 + 7/6 x_2 = 3/2,
+        // 9/8 x_1 + 10/9 x_2 = 4/3
         ArrayList<LinearEquation> eqs = getTest3DEqs_1();
-        ArrayList<LinearEquation> actual = LinearEquation.cut(0,0,eqs);
+        ArrayList<LinearEquation> actual = LinearEquation.cut(0,1,eqs);
         ArrayList<LinearEquation> expected = getTest2DEqs();
         assertEquals(expected, actual);
+
+        // 2/1 x_0 + 3/2 x_1 + 4/3 x_2 = 3/1,
+        // 5/4 x_0 + 6/5 x_1 + 7/6 x_2 = 3/2,
+        // 8/7 x_0 + 9/8 x_1 + 10/9 x_2 = 4/3
+        // ->
+        //10/9 x_2 = 4/3
+        ArrayList<LinearEquation> eqs2 = getTest3DEqs_1();
+        ArrayList<LinearEquation> actual2 = LinearEquation.cut(0,2,eqs2);
+        Ratio ratio = new Ratio(9, 10);
+        ArrayList<Ratio> ratios = new ArrayList<>(List.of(ratio));
+        Ratio c = new Ratio(3,4);
+        LinearEquation eq = new LinearEquation(ratios, c);
+        ArrayList<LinearEquation> expected2 = new ArrayList<>(List.of(eq));
+        assertEquals(expected2, actual2);
     }
 
     @Test
