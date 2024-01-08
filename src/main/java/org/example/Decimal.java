@@ -2,7 +2,7 @@ package org.example;
 
 public class Decimal {
 	private String integralValue;//整数部分
-	private String decimal;//小数部分
+	protected String decimal;//小数部分
 	Decimal(String val,String dec){
 		this.integralValue = val;
 		this.decimal = dec;

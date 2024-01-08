@@ -30,10 +30,11 @@ public class Linear2DEquation {
         Pair initial = new Pair<>(le2D_1, le2D_2);
         Pair<Linear2DEquation> pair = toUnitForNonZeroFirstCoff(initial);
         Pair<Linear2DEquation> sortedPair = getSortedPair(pair);
+        //解が複数
         if(pair.getFirst().equals(pair.getSecond())) {
             //3x+2y=4,//6x+4y=8
             return new Solution(null, null, "解は" + le2D_1.toString() + "上の全ての点です");
-        } else if(existInverse(pair)){
+        } /*解が一つだけある時*/ else if(existInverse(pair)){
             //1次従属で解が無数にあり
             //解が1つだけ存在
             //2x+10y=4,//3x+9y=15
@@ -54,20 +55,27 @@ public class Linear2DEquation {
                 Linear2DEquation newLe2D_1 = sortedPair.getFirst().substructBy(tmp);
                 return new Solution(newLe2D_1.c, sortedPair.getSecond().c, "唯一の解が見つかりました");
             }
-        } else {
+        }  /*解なし(早めに解なしは返すように修正した方がいい気がする)*/ else {
             //3x+2y=4,//6x+4y=10
             return new Solution(null, null, "解はありません");
         }
+    }
 
+    static protected Coordinate getCoordinateFor(Dot origin, Vector2D firstAxisVec, Vector2D secondAxisVec, Dot target) {
+        Vector2D positonVec = Vector2D.get2DVector(origin, target);
+        Linear2DEquation e1 = new Linear2DEquation(firstAxisVec.x, secondAxisVec.x, positonVec.x);
+        Linear2DEquation e2 = new Linear2DEquation(firstAxisVec.y, secondAxisVec.y, positonVec.y);
+        Solution solution = Linear2DEquation.getSolution(e1, e2);
+        return new Coordinate(solution.solutionX, solution.solutionY);
     }
 
 
 
     Linear2DEquation timesBy(Ratio r) {
         return new Linear2DEquation(
-                this.coff1.getProductRatio(r),
-                this.coff2.getProductRatio(r),
-                this.c.getProductRatio(r));
+                this.coff1.times(r),
+                this.coff2.times(r),
+                this.c.times(r));
     }
 
     Linear2DEquation substructBy(Linear2DEquation li2D) {
@@ -144,9 +152,9 @@ public class Linear2DEquation {
 
     static boolean existInverse(Pair<Linear2DEquation> pair) {
         Ratio det =
-                pair.getFirst().coff1.getProductRatio(
+                pair.getFirst().coff1.times(
                         pair.getSecond().coff2).minus(
-                        pair.getFirst().coff2.getProductRatio(pair.getSecond().coff1)
+                        pair.getFirst().coff2.times(pair.getSecond().coff1)
                 );
         if (det.isZero()) {
             return false;

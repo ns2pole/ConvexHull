@@ -13,17 +13,7 @@ public class LinearEquation {
         this.c = c;
     }
 
-    //(3, 4, 2) -> (1, 4/3, 2/3) -> (1, 4/3, 2/3) -> (1, 4/3, 2/3) -> (1, 0, 0)
-    //(5, 2, 1) -> (1, 2/5, 1/5) -> (0, 14/15, 7/15) -> (0, 1, 1/2) -> (0, 1, 1/2)
-
-    //(0, 3, 2) -> (0, 1, 2/3) -> (1, 2/3, 2/3)
-    //(3, 2, 2) -> (1, 2/3, 2/3) -> (0, 1, 2/3)
-
-    //(3, 2, 2) -> (1, 2/3, 2/3) -> (0, 1, 2/3)
-    //(0, 3, 2) -> (0, 1, 2/3) -> (1, 2/3, 2/3)
-
-    //(0, 3, 2) -> (0, 1, 2/3) -> (1, 0, 1/2)
-    //(4, 0, 2) -> (1, 0, 1/2) -> (0, 1, 2/3)
+    //掃き出し法(n本連立 一意になる時のみ一旦実装)
     static ArrayList<Ratio> getSolution(ArrayList<LinearEquation> eqs) {
         //TODO copyの仕方
         ArrayList<LinearEquation> sweptingEqs = eqs;
@@ -40,9 +30,9 @@ public class LinearEquation {
     LinearEquation timesBy(Ratio r) {
         ArrayList<Ratio> newcofficients = new ArrayList<>();
         for (Ratio coeff : this.cofficients) {
-            newcofficients.add(coeff.getProductRatio(r));
+            newcofficients.add(coeff.times(r));
         }
-        return new LinearEquation(newcofficients, this.c.getProductRatio(r));
+        return new LinearEquation(newcofficients, this.c.times(r));
     }
 
     LinearEquation minus(LinearEquation other) {

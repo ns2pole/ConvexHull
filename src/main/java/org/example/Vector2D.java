@@ -4,16 +4,16 @@
     import java.util.Objects;
 
     public class Vector2D {
-        protected int x;
-        protected int y;
+        protected Ratio x;
+        protected Ratio y;
 
-        Vector2D(int x, int y) {
+        Vector2D(Ratio x, Ratio y) {
             this.x = x;
             this.y = y;
         }
 
         static Vector2D get2DVector(Dot from, Dot to) {
-            return new Vector2D(to.x - from.x, to.y - from.y);
+            return new Vector2D(to.x.minus(from.x) , to.y.minus(from.y));
         }
 
         //vector (1,1)->vector (1,-1)
@@ -21,11 +21,11 @@
             if(this.isZero()) {
                 throw new NormalVectorException();
             }
-            return new Vector2D(this.y, -this.x);
+            return new Vector2D(this.y, this.x.times(new Ratio(-1,1)));
         }
 
         boolean isZero() {
-            return this.x == 0 && this.y == 0;
+            return this.x.isZero() && this.y.isZero();
         }
 
         @Override
@@ -38,7 +38,7 @@
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Vector2D dot = (Vector2D) o;
-            return x == dot.x && y == dot.y;
+            return x.equals(dot.x) && y.equals(dot.y);
         }
 
 //        @Override

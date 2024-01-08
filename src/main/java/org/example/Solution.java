@@ -3,9 +3,9 @@ package org.example;
 import java.util.Objects;
 
 public class Solution {
-    private Ratio solutionX;
-    private Ratio solutionY;
-    private String description;
+    protected Ratio solutionX;
+    protected Ratio solutionY;
+    protected String description;
 
     Solution(Ratio solutionX, Ratio solutionY, String description) {
         this.solutionX = solutionX;

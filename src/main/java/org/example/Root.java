@@ -29,7 +29,7 @@ public class Root {
 	}
 	
 	protected Root getProductedRoot(Root r1) {
-		Ratio newCoff = this.coff.getProductRatio(r1.coff);
+		Ratio newCoff = this.coff.times(r1.coff);
 		int newInside = this.inside * r1.inside;
 		Root result = new Root(newCoff,newInside);
 		return result;

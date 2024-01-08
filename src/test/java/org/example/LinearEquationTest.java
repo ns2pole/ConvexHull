@@ -334,6 +334,8 @@ class LinearEquationTest {
                 new Ratio(1, -5)
         ));
         assertEquals(expected3, actual3);
+
+
     }
     @Test
     void sortAndToUnitAndSwept() {

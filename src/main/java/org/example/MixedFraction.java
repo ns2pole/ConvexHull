@@ -72,7 +72,7 @@ public class MixedFraction {
 		Ratio firstRatio = firstOne.toRatio();
 		MixedFraction secondOne = new MixedFraction(frac.fraction,frac.denominator,frac.numerator);
 		Ratio secondRatio = secondOne.toRatio();
-		Ratio resultRatio = firstRatio.getProductRatio(secondRatio);
+		Ratio resultRatio = firstRatio.times(secondRatio);
 		MixedFraction result = resultRatio.toMixedFraction();
 		return result;
 	}

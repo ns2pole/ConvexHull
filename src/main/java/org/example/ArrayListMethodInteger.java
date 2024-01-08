@@ -121,7 +121,7 @@ public interface ArrayListMethodInteger {
 		Ratio coff = new Ratio(1,1);
 		for(int i = 0;i<resultCoff.size();i++) {
 			Ratio a = new Ratio(1,resultCoff.get(i));
-			coff = coff.getProductRatio(a);
+			coff = coff.times(a);
 		}
 		ArrayList<Integer> resultInside = detectSingleNum(primeFactors);
 		int inside = 1;

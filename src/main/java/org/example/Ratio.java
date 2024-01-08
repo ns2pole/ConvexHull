@@ -3,11 +3,18 @@ package org.example;
 import static org.example.ArrayListMethodInteger.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Ratio {
 	private int denominator;
 	private int numerator;
+
+	Ratio(int integer){
+		this.denominator = 1;
+		this.numerator = integer;
+	}
+
 	Ratio(int den,int nume){
 		if(den < 0) {
 			this.denominator = -1 * den;
@@ -32,12 +39,13 @@ public class Ratio {
 	protected static int getFieldNum() {
 		return 2;
 	}
-	
+
 	protected Ratio add(Ratio ratio) {
 		int resultDenominator = this.denominator + ratio.denominator;
 		int resultNumerator = this.numerator + ratio.numerator;
 		return new Ratio(resultDenominator, resultNumerator);
 	}
+
 	/**約分*/
 	protected Ratio getIrreducibleRatio() {
 		int GCD = ArrayListMethodInt.getGCDOf(denominator, numerator);
@@ -46,7 +54,7 @@ public class Ratio {
 		return new Ratio(newDenominator,newNumerator);
 	}
 	/**掛け算*/
-	protected Ratio getProductRatio(Ratio ratio) {
+	protected Ratio times(Ratio ratio) {
 		int multipliedDenominator = this.denominator * ratio.denominator;
 		int multipliedNumerator = this.numerator * ratio.numerator;
 		Ratio multipliedRatio = new Ratio(multipliedDenominator,multipliedNumerator);
@@ -100,7 +108,17 @@ public class Ratio {
 		Ratio minusedRatio = new Ratio(minusedDenominator,minusedNumerator);
 		return minusedRatio.getIrreducibleRatio();
 	}
-	
+
+	protected int roundingOff() {
+		Decimal decimal = this.getDecimal(2);
+		int intPart = this.numerator / this.denominator;
+		if(Integer.parseInt(decimal.decimal.substring(0, 1)) >= 5) {
+			return intPart + 1;
+		} else {
+			return intPart;
+		}
+	}
+
 	/**帯分数へ変換*/
 	protected MixedFraction toMixedFraction() {
 		int resultNumerator = this.numerator % this.denominator;
@@ -211,6 +229,22 @@ public class Ratio {
 		return new Ratio(this.numerator, this.denominator);
 	}
 
+	public boolean isNegative() {
+		if (this.numerator < 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public boolean isPositive() {
+		if (this.numerator > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 	@Override
 	public boolean equals (Object obj) {
 		Ratio r = (Ratio)obj;
@@ -221,5 +255,10 @@ public class Ratio {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(denominator, numerator);
 	}
 }
